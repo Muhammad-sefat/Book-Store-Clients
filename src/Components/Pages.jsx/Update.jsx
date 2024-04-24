@@ -1,8 +1,10 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Update = () => {
   const updateBook = useLoaderData();
-  console.log(updateBook._id);
+  const { id } = useParams();
+  console.log(updateBook, id);
   const handleUpdateForm = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,6 +13,27 @@ const Update = () => {
     const descrip = form.descrip.value;
     const UpdateBook = { name, photo, descrip };
     console.log(UpdateBook);
+
+    fetch(`http://localhost:5000/book/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(UpdateBook),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Success!",
+            text: "Update Book Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          form.reset();
+        }
+      });
   };
   return (
     <div>

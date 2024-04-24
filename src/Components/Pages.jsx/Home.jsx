@@ -10,7 +10,12 @@ const Home = () => {
       <h2 className="text-4xl font-bold py-3">This Is Home page</h2>
       <div className="grid grid-cols-2 gap-5">
         {books.map((book) => (
-          <SingleBook key={book._id} book={book}></SingleBook>
+          <SingleBook
+            key={book._id}
+            book={book}
+            books={books}
+            setBooks={setBooks}
+          ></SingleBook>
         ))}
       </div>
     </div>
