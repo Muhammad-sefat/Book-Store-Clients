@@ -19,16 +19,6 @@ const Navbar = () => {
                 <a>Register</a>
               </li>
             </Link>
-            <Link to={"/update"}>
-              <li>
-                <a>Update</a>
-              </li>
-            </Link>
-            <Link to={"/register"}>
-              <li>
-                <a>Register</a>
-              </li>
-            </Link>
           </ul>
         </div>
       </div>
